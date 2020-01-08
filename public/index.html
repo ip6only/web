@@ -43,16 +43,17 @@
       <div class="alert alert-warning" role="alert">This tool is still under construction, and is not yet fully functional. Apologies for any inconvenience.</div>
       <form>
         <div class="row">
-          <div class="col-lg-2 col-sm-3">
-            <label for="protocol">Protocol</label>
-            <select id="protocol" class="form-control">
-              <option selected>https://</option>
-              <option>http://</option>
-            </select>
-          </div>
-          <div class="col-lg-10 col-sm-9">
+          <div class="col">
             <label for="url">URL</label>
-            <input id="url" type="text" class="form-control" placeholder="www.bh96.uk/">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <select id="protocol" class="form-control">
+                  <option selected>https://</option>
+                  <option>http://</option>
+                </select>
+              </div>
+              <input type="text" class="form-control" id="url" placeholder="www.bh96.uk/">
+            </div>
           </div>
         </div>
         <div class="row" id="btn-row">
