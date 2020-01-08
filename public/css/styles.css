@@ -6,8 +6,7 @@ html {
   min-width: 360px;
 }
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 75px; /* margin bottom = footer height + 15px */
 }
 .footer {
   position: absolute;
@@ -35,4 +34,20 @@ body > .container {
 
 code {
   font-size: 80%;
+}
+
+#btn-row {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+#btn-row button {
+  width: 100%;
+}
+
+#screenshot-container {
+  display: block;
+  margin: 0 auto 1rem;
+  max-width: 960px;
+  overflow-x: scroll;
 }
