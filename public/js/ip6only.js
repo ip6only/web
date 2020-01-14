@@ -9,6 +9,8 @@ function getApiBaseUrl() {
 }
 
 function screenshot(url) {
+  document.getElementById('screenshot-container').style.display = 'none';
+  document.getElementById('screenshot-loading').style.display = 'block';
   encodedUrl = encodeURIComponent(url);
   fetch(getApiBaseUrl() + '/v1/screenshot/' + encodedUrl + '?width=960&height=720').then(
     function(response) {
@@ -20,7 +22,11 @@ function screenshot(url) {
       // Examine the text in the response
       response.json().then(function(data) {
         console.log(data);
-        document.getElementById('screenshot').setAttribute('src', 'data:image/jpg;base64,' + data.image);
+        screenshotImg = document.getElementById('screenshot');
+        screenshotImg.setAttribute('src', 'data:image/jpg;base64,' + data.image);
+        screenshotImg.setAttribute('alt', 'Screenshot of ' + url);
+        document.getElementById('screenshot-loading').style.display = 'none';
+        document.getElementById('screenshot-container').style.display = 'block';
       });
     }
   )

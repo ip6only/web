@@ -36,6 +36,10 @@ code {
   font-size: 80%;
 }
 
+#error-message {
+  display: none;
+}
+
 #btn-row {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -45,8 +49,15 @@ code {
   width: 100%;
 }
 
+#screenshot-loading {
+  display: none;
+  margin: 5rem auto;
+  width: 100px;
+  height: 100px;
+}
+
 #screenshot-container {
-  display: block;
+  display: none;
   margin: 0 auto 1rem;
   max-width: 960px;
   overflow-x: scroll;
