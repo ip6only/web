@@ -9,9 +9,11 @@ function getApiBaseUrl() {
 }
 
 function screenshot(url) {
+  document.getElementById('error-message').style.display = 'none';
   document.getElementById('screenshot-container').style.display = 'none';
   document.getElementById('screenshot-loading').style.display = 'block';
   encodedUrl = encodeURIComponent(url);
+
   fetch(getApiBaseUrl() + '/v1/screenshot/' + encodedUrl + '?width=960&height=720').then(
     function(response) {
       if (response.status !== 200) {
@@ -20,13 +22,29 @@ function screenshot(url) {
       }
 
       // Examine the text in the response
-      response.json().then(function(data) {
-        console.log(data);
-        screenshotImg = document.getElementById('screenshot');
-        screenshotImg.setAttribute('src', 'data:image/jpg;base64,' + data.image);
-        screenshotImg.setAttribute('alt', 'Screenshot of ' + url);
+      response.json().then(function(json) {
+        console.log(json);
         document.getElementById('screenshot-loading').style.display = 'none';
-        document.getElementById('screenshot-container').style.display = 'block';
+
+        if (json.errors) {
+          let errorMessage = '';
+          if (json.errors.length === 1) {
+            errorMessage = '<strong>Error:</strong> ' + json.errors[0];
+          } else {
+            errorMessage = '<strong>Errors:</strong><ul>';
+            for (let i = 0; i < json.errors.length; i++) {
+              errorMessage += '<li>' + json.errors[i] + '</li>';
+            }
+            errorMessage += '</ul>';
+          }
+          document.getElementById('error-message').innerHTML = errorMessage;
+          document.getElementById('error-message').style.display = 'block';
+        } else {
+          screenshotImg = document.getElementById('screenshot');
+          screenshotImg.setAttribute('src', 'data:image/jpg;base64,' + json.image);
+          screenshotImg.setAttribute('alt', 'Screenshot of ' + url);
+          document.getElementById('screenshot-container').style.display = 'block';
+        }
       });
     }
   )
