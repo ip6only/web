@@ -40,6 +40,16 @@ code {
   display: none;
 }
 
+#url:focus:valid {
+  border-color: #c3e6cb;
+  box-shadow: 0 0 0 0.2rem rgba(212,237,218,.75);
+}
+
+#url:focus:invalid {
+  border-color: #f5c6cb;
+  box-shadow: 0 0 0 0.2rem rgba(248,215,218,.75);
+}
+
 #btn-row {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
