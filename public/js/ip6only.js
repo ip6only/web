@@ -55,5 +55,5 @@ function screenshot(url) {
 
 document.getElementById('submit').addEventListener('click', function(event) {
   event.preventDefault();
-  screenshot(document.getElementById('protocol').value + document.getElementById('url').value);
+  screenshot(document.getElementById('url').value);
 });
